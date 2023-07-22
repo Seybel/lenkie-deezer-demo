@@ -1,4 +1,3 @@
-import artistCoverImg from "../../assets/img/billie-cover-art.jpeg";
 import Tracks from "./Tracks.jsx";
 const AlbumBanner = () => {
   const bannerCover = {
