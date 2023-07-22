@@ -2,7 +2,9 @@ import React, { createContext, useState, useEffect } from "react";
 import ThemeWrapper from "./ThemeWrapper";
 import PropTypes from "prop-types";
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext({
+  themeMode: "",
+});
 
 export const ThemeProvider = ({ children }) => {
   const [themeMode, setThemeMode] = useState("light");

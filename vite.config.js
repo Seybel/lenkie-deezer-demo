@@ -9,5 +9,5 @@ export default defineConfig({
     setupFiles: ['./tests/setup.js'],
     testMatch: ['./tests/**/*.test.jsx'],
     globals: true
-  },
+  }
 })
