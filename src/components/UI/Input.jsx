@@ -20,8 +20,10 @@ const Input = forwardRef(
 
         <input
           className={`${inputClassWhiteBg} ${inputClassName}`}
+          id={id}
           ref={ref}
           type={type}
+          aria-label={label}
           placeholder={placeholder || ""}
         />
       </div>
