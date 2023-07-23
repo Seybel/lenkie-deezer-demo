@@ -1,12 +1,17 @@
+import PropTypes from "prop-types";
+import { formatFanNumber } from "../../utils/numberFormatter.js";
 import Tracks from "./Tracks.jsx";
-const AlbumBanner = () => {
+const AlbumBanner = ({ coverImgSrc, artistName, fansAmount }) => {
   const bannerCover = {
-    backgroundImage: `url(${artistCoverImg})`,
+    backgroundImage: `url(${coverImgSrc})`,
     backgroundSize: "cover",
   };
 
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-12 my-6 mx-8">
+    <div
+      className="grid grid-cols-1 gap-2 md:grid-cols-12 my-6 mx-8"
+      data-testid="album-banner"
+    >
       {/* Hidden on small screens */}
       <div
         className="relative col-span-1 hidden md:block md:col-span-8 lg:col-span-8 bg-cover bg-center h-64"
@@ -17,9 +22,11 @@ const AlbumBanner = () => {
         <div className="absolute top-0 left-0 px-7 py-12 text-white">
           {/* Banner text - name & fan count */}
           <h1 className="font-bold text-5xl mb-2 hidden md:block">
-            John Collier
+            {artistName}
           </h1>
-          <p className="text-xl mb-1 hidden md:block">200K fans</p>
+          <p className="text-xl mb-1 hidden md:block">
+            {formatFanNumber(fansAmount)} fans
+          </p>
         </div>
       </div>
 
@@ -34,8 +41,8 @@ const AlbumBanner = () => {
         </div>
         <div className="px-4 md:px-7 py-7 md:py-12">
           {/* Banner text - name & fan count */}
-          <h1 className="font-bold text-3xl mb-2">John Collier</h1>
-          <p className="text-base mb-1">200K fans</p>
+          <h1 className="font-bold text-3xl mb-2">{artistName}</h1>
+          <p className="text-base mb-1">{formatFanNumber(fansAmount)} fans</p>
         </div>
       </div>
 
@@ -44,6 +51,12 @@ const AlbumBanner = () => {
       {/* Tracks End */}
     </div>
   );
+};
+
+AlbumBanner.propTypes = {
+  coverImgSrc: PropTypes.string,
+  artistName: PropTypes.string.isRequired,
+  fansAmount: PropTypes.number.isRequired,
 };
 
 export default AlbumBanner;
