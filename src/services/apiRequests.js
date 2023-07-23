@@ -5,7 +5,7 @@ export async function getAccessToken() {
   try {
     const response = await fetch('https://connect.deezer.com/oauth/access_token.php', {
       method: 'POST',
-      body: `app_id=622184&secret=5a5d2022c8ddbed01de9e16b04562421&output=json`,
+      body: `app_id=${apiConfig.appId}&secret=${apiConfig.apiSecret}&output=json`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
