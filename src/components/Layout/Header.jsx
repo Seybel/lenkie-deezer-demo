@@ -9,6 +9,7 @@ import { LightIcon, DarkIcon } from "../Icons/ThemeIcon.jsx";
 // import lenkieDeezBlack from "../../assets/img/lenkie-deezer-black.png";
 
 const Header = () => {
+  console.log(import.meta.env.VITE_APP_ID);
   const searchInputRef = useRef();
   const { themeMode, toggleTheme } = useContext(ThemeContext);
 

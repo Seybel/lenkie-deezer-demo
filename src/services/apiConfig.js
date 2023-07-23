@@ -12,5 +12,9 @@ export const http = axios.create({
   },
 });
 
-export default http;
-
+export const apiConfig = {
+    appId: import.meta.env.VITE_APP_ID,
+    appKey: import.meta.env.VITE_APP_API_KEY,
+    apiSecret: import.meta.env.VITE_APP_API_SECRET,
+    apiUrl: `${PROXY_URL}/${BASE_URL}`,
+};

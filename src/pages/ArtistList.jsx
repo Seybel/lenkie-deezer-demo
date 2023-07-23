@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import http from "../services/apiConfig";
+// import { http } from "../services/apiConfig";
+import { makeApiRequest } from "../services/apiRequests";
 import Card from "../components/UI/Card";
 
 const ArtistList = () => {
   const [artists, setArtists] = useState([]);
 
   useEffect(() => {
-    // Fetch artists
-    http
-      .get("/artist/27")
-      .then((response) => {
-        console.log(response);
-        setArtists(response);
+    const artistID = 27;
+
+    makeApiRequest(`artist/${artistID}`)
+      .then((data) => {
+        console.log(data);
+        setArtists(data);
       })
-      .catch((error) => {
-        console.error("Error fetching artists:", error);
-      });
+      .catch((error) =>
+        console.error("Error fetching track information:", error)
+      );
   }, []);
 
   const allArtists = artists.map((artist) => (
