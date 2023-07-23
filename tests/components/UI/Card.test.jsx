@@ -1,15 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import Card from "../../../src/components/UI/Card.jsx";
+import { formatFanNumber } from "../../../src/utils/numberFormatter.js";
 
 describe("Card", () => {
-  // Tests that the component renders with valid props
+  // Tests that the Card component renders with valid props
   it("renders valid props", () => {
-    const { getByAltText, getByText } = render(
-      <Card imgSrc="test.jpg" artistName="Bruno Mars" fansAmount="202341" />
+    const imgSrc = "https://example.com/image.jpg";
+    const artistName = "Bruno Mars";
+    const fansAmount = "202341";
+    render(
+      <Card imgSrc={imgSrc} artistName={artistName} fansAmount={fansAmount} />
     );
-    expect(getByAltText("test.jpg")).toBeInTheDocument();
-    expect(getByText("Bruno Mars")).toBeInTheDocument();
-    expect(getByText(/202341/i)).toBeInTheDocument();
+    const imgElement = screen.getByAltText(imgSrc);
+    const artistNameElement = screen.getByText(artistName);
+    const fansAmountElement = screen.getByText(
+      `${formatFanNumber(fansAmount)} Fans`
+    );
+    expect(imgElement).toBeInTheDocument();
+    expect(artistNameElement).toBeInTheDocument();
+    expect(fansAmountElement).toBeInTheDocument();
   });
 
   // Tests that the artist name is displayed correctly
@@ -24,17 +33,14 @@ describe("Card", () => {
     expect(name).toBeInTheDocument();
   });
 
-  // Tests that the fans amount is displayed correctly
+  // Tests that fansAmount is displayed correctly in the Card component
   it("fansAmount displayed correctly", () => {
-    const imgSrc = "https://example.com/image.jpg";
-    const artistName = "Bruno Mars";
     const fansAmount = "202341";
-    render(
-      <Card imgSrc={imgSrc} artistName={artistName} fansAmount={fansAmount} />
+    const { getByText } = render(
+      <Card imgSrc="test.jpg" artistName="Bruno Mars" fansAmount={fansAmount} />
     );
-
-    const fans = screen.getByText(new RegExp(fansAmount, "i"));
-    expect(fans).toBeInTheDocument();
+    const fansAmountText = getByText(`${formatFanNumber(fansAmount)} Fans`);
+    expect(fansAmountText).toBeInTheDocument();
   });
 
   // Tests that the component renders with missing imgSrc prop

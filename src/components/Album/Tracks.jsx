@@ -1,6 +1,7 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import { ThemeContext } from "../../store/ThemeContext.jsx";
-const Tracks = () => {
+const Tracks = ({ idx, trackName, trackDuration }) => {
   const { themeMode } = useContext(ThemeContext);
   const textStyle = themeMode === "light" ? "text-gray-500" : "text-white";
   const borderStyle =
@@ -13,29 +14,19 @@ const Tracks = () => {
           className={`flex items-center justify-between pb-2 mb-2 border-b text-base ${textStyle} ${borderStyle}`}
         >
           <p className="">
-            <b>1.</b> In my room
+            <b>{idx}.</b> {trackName}
           </p>
-          <p className="pr-8">02:54</p>
-        </div>
-        <div
-          className={`flex items-center justify-between border-b pb-2 mb-2 text-base ${textStyle} ${borderStyle}`}
-        >
-          <p className="">
-            <b>2.</b> You and I
-          </p>
-          <p className="pr-8">02:54</p>
-        </div>
-        <div
-          className={`flex items-center justify-between border-b pb-2 mb-2 text-base ${textStyle} ${borderStyle}`}
-        >
-          <p className="">
-            <b>3.</b> Flinestones
-          </p>
-          <p className="pr-8">02:54</p>
+          <p className="pr-8">{trackDuration}</p>
         </div>
       </div>
     </>
   );
+};
+
+Tracks.propTypes = {
+  idx: PropTypes.number.isRequired,
+  trackName: PropTypes.string.isRequired,
+  trackDuration: PropTypes.string.isRequired,
 };
 
 export default Tracks;

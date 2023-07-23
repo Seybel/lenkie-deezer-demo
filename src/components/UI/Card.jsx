@@ -1,3 +1,4 @@
+import { formatFanNumber } from "../../utils/numberFormatter";
 import PropTypes from "prop-types";
 
 const Card = ({ imgSrc, artistName, fansAmount }) => {
@@ -7,7 +8,7 @@ const Card = ({ imgSrc, artistName, fansAmount }) => {
       <div className="px-3 pt-4 pb-8">
         <div className="font-bold text-lg mb-2">{artistName}</div>
         <p className="text-gray-700 dark:text-gray-400 text-base">
-          {fansAmount} Fans
+          {formatFanNumber(fansAmount)} Fans
         </p>
       </div>
     </div>

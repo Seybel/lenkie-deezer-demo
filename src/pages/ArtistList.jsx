@@ -15,7 +15,7 @@ const ArtistList = () => {
         setArtists(data);
       })
       .catch((error) =>
-        console.error("Error fetching track information:", error)
+        console.error("Error fetching artist information:", error)
       );
   }, []);
 
